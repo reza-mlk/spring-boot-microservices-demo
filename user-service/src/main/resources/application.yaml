@@ -1,12 +1,8 @@
 spring:
   application:
-    name: DockerFile
+    name: user-service
 
-  datasource:
-    url : jdbc:postgresql://postgres:5432/userdb
-    username: postgres
-    password: 1234
+  config:
+    import: configserver:http://config-server:8888
 
-  jpa:
-    hibernate:
-      ddl-auto: update
+

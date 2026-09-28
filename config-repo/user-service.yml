@@ -1,0 +1,17 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    url: jdbc:postgresql://postgres-db:5432/userdb
+    username: postgres
+    password: "1234"
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+      
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.2.108:8001/eureka/
