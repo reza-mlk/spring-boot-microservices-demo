@@ -1,0 +1,21 @@
+server:
+  port: 8003
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.5.244:8001/eureka/
+
+spring:
+  datasource:
+    url: jdbc:postgresql://192.168.5.244:5433/post_db
+    username: microservice
+    password: microservice
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+app:
+  message: hello-from-config-server
