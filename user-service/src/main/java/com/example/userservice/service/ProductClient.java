@@ -8,12 +8,14 @@ import org.springframework.web.client.RestClient;
 @RequiredArgsConstructor
 public class ProductClient {
 
-    private final RestClient restClient;
+    private final RestClient.Builder restClientBuilder;
 
-    public String getProducts(){
+    public String getProducts() {
 
-        return restClient.get()
-                .uri("http://product-service:8080/products")
+        return restClientBuilder
+                .build()
+                .get()
+                .uri("http://PRODUCT-SERVICE/products")
                 .retrieve()
                 .body(String.class);
     }
