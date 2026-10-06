@@ -4,11 +4,11 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://192.168.5.244:8001/eureka/
+      defaultZone: http://192.168.2.113:8001/eureka/
 
 spring:
   datasource:
-    url: jdbc:postgresql://10.217.66.65:5433/post_db
+    url: jdbc:postgresql://192.168.2.113:5433/post_db
     username: microservice
     password: microservice
 
