@@ -58,6 +58,9 @@ services:
 
       config-server:
         condition: service_healthy
+        
+      service-registry:
+        condition: service_started
 
 
   product-service:
@@ -70,6 +73,9 @@ services:
     depends_on:
       config-server:
         condition: service_healthy
+        
+      service-registry:
+        condition: service_started
 
 
   api-gateway:
@@ -85,6 +91,20 @@ services:
     depends_on:
       config-server:
         condition: service_healthy
+        
+      service-registry:
+        condition: service_started
+        
+        
+  service-registry:
+    build:
+      context: ./service-registry
+
+    image: service-registry
+    container_name: service-registry
+
+    ports:
+      - "8761:8761"        
 
 
 volumes:

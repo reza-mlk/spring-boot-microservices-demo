@@ -2,6 +2,11 @@
 
 set -e
 
+echo "🔨 Building Service Registry..."
+cd service-registry
+mvn clean package -DskipTests
+cd ..
+
 echo "🔨 Building Product Service..."
 cd product-service
 mvn clean package -DskipTests
@@ -21,6 +26,8 @@ echo "🔨 Building API Gateway..."
 cd api-gateway
 mvn clean package -DskipTests
 cd ..
+
+
 
 echo "🐳 Building and starting Docker containers..."
 docker compose up -d --build
