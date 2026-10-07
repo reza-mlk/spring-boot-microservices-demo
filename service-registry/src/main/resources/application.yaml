@@ -1,11 +1,25 @@
 server:
-  port: 8761
+  port: 8888
 
 spring:
   application:
-    name: service-registry
+    name: config-server
+
+  profiles:
+    active: native
+
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: ${CONFIG_REPO_LOCATION:file:/config-repo}
 
 eureka:
   client:
-    register-with-eureka: false
-    fetch-registry: false
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://service-registry:8761/eureka/
+
+  instance:
+    prefer-ip-address: true
