@@ -6,22 +6,21 @@ spring:
   application:
     name: config-server
 
+  profiles:
+    active: native
+
   cloud:
     config:
       server:
-        git:
-          uri: https://github.com/reza-mlk/spring-boot-microservices-demo.git
-          default-label: main
-          search-paths:
-            - config-repo
-          clone-on-start: true
+        native:
+          search-locations: ${CONFIG_REPO_LOCATION:file:/config-repo}
 
 eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://192.168.5.244:8001/eureka/
+      defaultZone: http://service-registry:8761/eureka/
 
   instance:
     prefer-ip-address: true
