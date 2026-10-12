@@ -45,6 +45,17 @@ services:
       retries: 5
 
 
+  service-registry:
+    build:
+      context: ./service-registry
+
+    image: service-registry
+    container_name: service-registry
+
+    ports:
+      - "8761:8761"
+
+
   user-service:
     image: user-service
     container_name: user-service
@@ -58,7 +69,7 @@ services:
 
       config-server:
         condition: service_healthy
-        
+
       service-registry:
         condition: service_started
 
@@ -73,7 +84,7 @@ services:
     depends_on:
       config-server:
         condition: service_healthy
-        
+
       service-registry:
         condition: service_started
 
@@ -91,35 +102,10 @@ services:
     depends_on:
       config-server:
         condition: service_healthy
-        
+
       service-registry:
         condition: service_started
-        
-        
-  service-registry:
-    build:
-      context: ./service-registry
 
-    image: service-registry
-    container_name: service-registry
-
-    ports:
-      - "8761:8761"        
-
-
-    keycloak:
-    image: quay.io/keycloak/keycloak:26.7.1
-    container_name: keycloak
-    command: start-dev
-    environment:
-      KC_BOOTSTRAP_ADMIN_USERNAME: admin
-      KC_BOOTSTRAP_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
-      KC_HOSTNAME: http://localhost:8090
-    ports:
-      - "127.0.0.1:8090:8080"
-    volumes:
-      - keycloak-data:/opt/keycloak/data
 
 volumes:
   postgres-data:
-  keycloak-data: 
