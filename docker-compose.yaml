@@ -1,3 +1,4 @@
+
 services:
 
   postgres:
@@ -57,6 +58,9 @@ services:
 
 
   user-service:
+    build:
+      context: ./user-service
+
     image: user-service
     container_name: user-service
 
@@ -75,11 +79,15 @@ services:
 
 
   product-service:
+    build:
+      context: ./product-service
+
     image: product-service
     container_name: product-service
 
     ports:
       - "8082:8082"
+      - "9090:9090"
 
     depends_on:
       config-server:
@@ -109,3 +117,4 @@ services:
 
 volumes:
   postgres-data:
+

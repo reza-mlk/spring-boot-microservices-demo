@@ -1,7 +1,13 @@
 server:
   port: 8082
-  
-  
+
+spring:
+  grpc:
+    server:
+      port: 9090
+
+debug: true
+
 eureka:
   client:
     service-url:
