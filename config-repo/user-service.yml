@@ -1,3 +1,4 @@
+
 server:
   port: 8081
 
@@ -11,9 +12,18 @@ spring:
     hibernate:
       ddl-auto: update
 
+  grpc:
+    client:
+      channel:
+        product:
+          target: static://product-service:9090
+          ssl:
+            enabled: false
+
 eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
       defaultZone: http://service-registry:8761/eureka/
+
